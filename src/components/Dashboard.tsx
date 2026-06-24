@@ -22,7 +22,7 @@ export default function Dashboard() {
     return pendingTasks.filter(t => {
       if (!t.due_date) return false;
       const dueDate = new Date(t.due_date);
-      return dueDate >= today && dueDate <= threeDaysFromNow;
+      return dueDate <= threeDaysFromNow;
     }).sort((a, b) => new Date(a.due_date!).getTime() - new Date(b.due_date!).getTime());
   };
 
@@ -46,9 +46,6 @@ export default function Dashboard() {
             <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-zinc-50 font-display">
               TaskBoard Overview
             </h1>
-            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mt-1">
-              Your global command center. Track priorities and deadlines across all subjects.
-            </p>
           </div>
         </div>
 
@@ -105,7 +102,7 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="space-y-3">
-                {highPriorityTasks.slice(0, 5).map(task => (
+                {highPriorityTasks.map(task => (
                   <div key={task.id} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
@@ -145,7 +142,7 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="space-y-3">
-                {dueSoonTasks.slice(0, 5).map(task => {
+                {dueSoonTasks.map(task => {
                   const isOverdue = task.due_date && new Date(task.due_date) < new Date(new Date().setHours(0,0,0,0));
                   
                   return (

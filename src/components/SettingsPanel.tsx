@@ -12,6 +12,8 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
   const [copied, setCopied] = React.useState(false);
   const [installPrompt, setInstallPrompt] = React.useState<any>(null);
   const user = useStore((state) => state.user);
+  const theme = useStore((state) => state.theme);
+  const setTheme = useStore((state) => state.setTheme);
   const signOut = useStore((state) => state.signOut);
 
   React.useEffect(() => {
@@ -85,6 +87,35 @@ export default function SettingsPanel({ isOpen, onClose }: SettingsPanelProps) {
             <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-2">
               Install TaskBoard to your device for quick access and a native app experience.
             </p>
+          </div>
+
+          {/* Theme Section */}
+          <div className="pb-6 border-b border-zinc-100 dark:border-zinc-900">
+            <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 tracking-wider uppercase font-mono mb-3">
+              Theme / Appearance
+            </h3>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setTheme('light')}
+                className={`flex-1 py-2 px-4 rounded-lg font-bold text-sm transition-colors cursor-pointer border ${
+                  theme === 'light'
+                    ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-zinc-900 dark:border-white'
+                    : 'bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-400 dark:border-zinc-800 dark:hover:bg-zinc-900'
+                }`}
+              >
+                Light
+              </button>
+              <button
+                onClick={() => setTheme('dark')}
+                className={`flex-1 py-2 px-4 rounded-lg font-bold text-sm transition-colors cursor-pointer border ${
+                  theme === 'dark'
+                    ? 'bg-zinc-900 text-white border-zinc-900 dark:bg-white dark:text-zinc-900 dark:border-white'
+                    : 'bg-white text-zinc-700 border-zinc-200 hover:bg-zinc-50 dark:bg-zinc-950 dark:text-zinc-400 dark:border-zinc-800 dark:hover:bg-zinc-900'
+                }`}
+              >
+                Dark
+              </button>
+            </div>
           </div>
 
           <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50 tracking-wider uppercase font-mono">
