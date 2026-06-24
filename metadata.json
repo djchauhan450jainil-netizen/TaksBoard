@@ -1,0 +1,6 @@
+{
+  "name": "Student Task Management Dashboard",
+  "description": "A minimalist, Swiss-designed student dashboard for organizing subjects and tracking tasks with drag-and-drop reordering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
